@@ -1,3 +1,4 @@
+/*validation is complete for form validation part*/
 function validate()
 {
 	//var roomName=req.query.nickname.split('@')[1];
