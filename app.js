@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var server = require('http').createServer(app);
 var webRTC = require('webrtc.io').listen(server);
+var session= require('express-session');
 
 var port = process.env.PORT || 8080;
 server.listen(port);
@@ -32,7 +33,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'views')));
-app.use(express.session({secret:"SuperSecretSessionKey"}));
+app.use(session({secret:"modi"}));
 
 app.use('/', routes);
 app.use('/users', users);

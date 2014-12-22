@@ -3,36 +3,30 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res) {
-	
-  res.render('index', { title: 'Express' });
-  console.log('Index is called');
-	console.log("Cookies: ", req.cookies);
+	console.log("Index is called");
+    res.render('index', { title: 'Express' });
 });
 
 router.get('/join', function(req, res) {
-	console.log('Join is called');
-  	
+	//console.log('Join is called');
   	// Get our form values. These rely on the "name" attributes
   	var nickroom=req.query.nickroom;
   	var password=req.query.password;
   	var nickname=nickroom.split('@')[0];
 	var roomname=nickroom.split('@')[1];
-
-  	console.log(nickname+' '+roomname+' '+password);
-  	console.log("Session: ", req.session);
-  	/*req.cookies.nick=nickname;
-  	req.cookies.room=roomname;
-  	req.cookies.pass=password;
-  	console.log("Cookies: ", req.cookies);*/
-  	
-    req.session.nick = nickName;
+  	// console.log(nickname+' '+roomname+' '+password);
+    // rewriting session variables
+    req.session.nick=nickname;
+    req.session.room=roomname;
+    req.session.pass=password;
   	res.redirect('/room/'+roomname);
 });
 
 router.get('/room/:roomname',function(req,res){
-	console.log('Hey bro');
-	console.log(req.cookies);
-  if(req.cookies.nick || req.cookies.pass){
+	//console.log('Hey bro');
+	//console.log('Coockie: ',req.cookies);
+    //console.log('Session ',req.session);
+  if(req.session.nick && req.session.pass && req.session.room){
     //if a person has his nickname set, let him reach that
     res.render('room', { title: 'Room' });
   }
