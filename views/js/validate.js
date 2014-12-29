@@ -1,7 +1,7 @@
 /*validation is complete for form validation part*/
 function validate()
 {
-	//var roomName=req.query.nickname.split('@')[1];
+	//var roomName=req.query.nickname.split('@')[1];;
 	var nickroom=document.forms["form"]["nickroom"].value;
 	var password=document.forms["form"]["password"].value;
 	var nickname=nickroom.split('@')[0];
